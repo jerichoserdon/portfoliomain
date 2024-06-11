@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Player Registration</title>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Players Registration</h1>
+        <form id="registrationForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="ign">IGN:</label>
+            <input type="text" id="ign" name="ign" required>
+
+            <label for="squad">Squad:</label>
+            <input type="text" id="squad" name="squad" required>
+
+            <label for="userID">User ID:</label>
+            <input type="number" id="userID" name="userID" required>
+
+            <label for="role">Role:</label>
+            <select id="role" name="role" required>
+                <option value="Gold Laner">Gold Laner</option>
+                <option value="Exp Laner">Exp Laner</option>
+                <option value="Jungler">Jungler</option>
+                <option value="Mage">Mage</option>
+                <option value="Roamer">Roamer</option>
+            </select>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <div class="player-list">
+        <h2>Registered Players</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>IGN</th>
+                    <th>Squad</th>
+                    <th>User ID</th>
+                    <th>Role</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody id="playerTableBody">
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const ign = document.getElementById('ign').value;
+            const squad = document.getElementById('squad').value;
+            const userID = document.getElementById('userID').value;
+            const role = document.getElementById('role').value;
+
+            const player = {
+                name: name,
+                ign: ign,
+                squad: squad,
+                userID: userID,
+                role: role
+            };
+
+            // Get existing orders from localStorage
+            let players = localStorage.getItem('players');
+            if (players) {
+                players = JSON.parse(players);
+            } else {
+                players = [];
+            }
+
+            // Add new order to the array
+            players.push(player);
+
+            // Save updated orders array back to localStorage
+            localStorage.setItem('players', JSON.stringify(players));
+
+            // Clear the form
+            document.getElementById('registrationForm').reset();
+
+            // Update the order list display
+            displayPlayers();
+
+            alert('Player registered successfully!');
+        });
+
+        function displayPlayers() {
+            const playerTableBody = document.getElementById('playerTableBody');
+            playerTableBody.innerHTML = '';
+
+            // Get orders from localStorage
+            const players = JSON.parse(localStorage.getItem('players')) || [];
+
+            // Display each order in the table
+            players.forEach((player, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${player.name}</td>
+                    <td>${player.ign}</td>
+                    <td>${player.squad}</td>
+                    <td>${player.userID}</td>
+                    <td>${player.role}</td>
+                `;
+             // Delete the data order on the table
+               const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.className = 'deleteBtn';
+        deleteButton.onclick = function(r) {
+            const row = this.parentNode.parentNode.rowIndex;
+            
+                                 document.getElementById("playerTableBody").deleteRow(row);
+
+localStorage.setItem('players', JSON.stringify(orders));      
+       
+        //Delete orders to the local storage
+        
+        localStorage.clear();           
+        };
+
+        row.appendChild(deleteButton);
+ playerTableBody.appendChild(row);
+ 
+            });
+        }
+        
+    </script>
+</body>
+</html>

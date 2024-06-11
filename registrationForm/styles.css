@@ -1,0 +1,89 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url(photo.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100vh;
+}
+.container {
+    position: absolute;
+    right: 60%;
+    background-color: #fff;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 500px;
+}
+.container h1 {
+    margin-bottom: 20px;
+}
+.container label {
+    display: block;
+    margin: 10px 0 5px;
+
+}
+.container input[type="text"],
+.container input[type="number"],
+.container input[type="email"],
+.container select {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+.container button {
+    padding: 10px 15px;
+    background-color: #ffae00;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.container button:hover {
+    background-color: #af8000;
+}
+.player-list {
+    background-color: #fff;
+    position: absolute;
+    right: 60%;
+    top: 80%;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 500px;
+}
+.player-list h2 {
+    margin-bottom: 20px;
+}
+.player-list table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.player-list table, .player-list th, .player-list td {
+    border: 1px solid #ccc;
+}
+.player-list th, .player-list td {
+    padding: 10px;
+    text-align: left;
+}
+button.deleteBtn {
+    background-color: #e74c3c;
+    color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 5px 10px;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
